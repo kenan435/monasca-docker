@@ -2,6 +2,8 @@ FROM alpine:3.7
 
 ARG GRAFANA_REPO=https://github.com/grafana/grafana.git
 ARG GRAFANA_BRANCH=v4.6.3
+ARG MONASCA_DATASOURCE_REPO=https://git.openstack.org/openstack/monasca-grafana-datasource
+ARG MONASCA_DATASOURCE_BRANCH=master
 
 # To force a rebuild, pass --build-arg REBUILD="$(DATE)" when running
 # `docker build`
@@ -28,8 +30,13 @@ RUN mkdir -p /var/lib/grafana && \
   npm run build && \
   cp -r ./conf /var/lib/grafana/conf && \
   cp -r ./public /var/lib/grafana/public && \
-  mkdir -p /var/lib/grafana/plugins && \
   cp ./bin/grafana-cli $GOPATH/bin/ && \
+  mkdir -p /var/lib/grafana/plugins/monasca-grafana-datasource && \
+  cd /var/lib/grafana/plugins/monasca-grafana-datasource && \
+  git init && \
+  git remote add origin $MONASCA_DATASOURCE_REPO && \
+  git fetch --depth=1 origin $MONASCA_DATASOURCE_BRANCH && \
+  git reset --hard FETCH_HEAD && \
   cd / && \
   rm -rf $GOPATH/src/github.com && \
   yarn cache clean && \
