@@ -1,7 +1,7 @@
 FROM alpine:3.7
 
 ARG GRAFANA_REPO=https://github.com/grafana/grafana.git
-ARG GRAFANA_BRANCH=v4.6.3
+ARG GRAFANA_BRANCH=v4.5.2
 ARG MONASCA_DATASOURCE_REPO=https://git.openstack.org/openstack/monasca-grafana-datasource
 ARG MONASCA_DATASOURCE_BRANCH=master
 
