@@ -3,7 +3,7 @@ FROM alpine:3.7
 ARG GRAFANA_REPO=https://github.com/grafana/grafana.git
 ARG GRAFANA_BRANCH=v4.5.2
 ARG MONASCA_DATASOURCE_REPO=https://git.openstack.org/openstack/monasca-grafana-datasource
-ARG MONASCA_DATASOURCE_BRANCH=master
+ARG MONASCA_DATASOURCE_BRANCH=1.2.1
 
 # To force a rebuild, pass --build-arg REBUILD="$(DATE)" when running
 # `docker build`
