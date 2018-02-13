@@ -1,6 +1,7 @@
 FROM alpine:3.7
 
 ARG GRAFANA_REPO=https://github.com/grafana/grafana.git
+# When updating to Grafana 4.6 change `cp -r ./public_gen` to `cp -r ./public`
 ARG GRAFANA_BRANCH=v4.5.2
 ARG MONASCA_DATASOURCE_REPO=https://git.openstack.org/openstack/monasca-grafana-datasource
 ARG MONASCA_DATASOURCE_BRANCH=1.2.1
@@ -29,7 +30,7 @@ RUN mkdir -p /var/lib/grafana && \
   npm install -g yarn && yarn install --pure-lockfile --no-emoji && \
   npm run build && \
   cp -r ./conf /var/lib/grafana/conf && \
-  cp -r ./public /var/lib/grafana/public && \
+  cp -r ./public_gen /var/lib/grafana/public && \
   cp ./bin/grafana-cli $GOPATH/bin/ && \
   mkdir -p /var/lib/grafana/plugins/monasca-grafana-datasource && \
   cd /var/lib/grafana/plugins/monasca-grafana-datasource && \
