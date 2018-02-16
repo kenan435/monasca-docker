@@ -1,5 +1,6 @@
 # Credits
-Detailed list of all the third-party libraries being used in this project
+
+Detailed list of all the third-party libraries being used in this project.
 
 ### Monasca API
 | Software              | Version | Version     | Link                                                                                                 |
